@@ -1,5 +1,5 @@
 Name:           efl
-Version:        1.8.alpha
+Version:        1.9.0
 Release:        1
 License:        LGPL-2.1
 Summary:        Enlightenment Foundation Libraries - set of libraries used (not only) by E17
