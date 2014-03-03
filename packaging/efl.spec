@@ -1,6 +1,6 @@
 Name:           efl
 Version:        1.9.0
-Release:        1
+Release:        0
 License:        LGPL-2.1
 Summary:        Enlightenment Foundation Libraries - set of libraries used (not only) by E17
 Url:            http://enlightenment.org/
