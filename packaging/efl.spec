@@ -143,7 +143,11 @@ Headers, pkgconfig files and other files needed for development with EFL.
 NOCONFIGURE=1 ./autogen.sh
 %configure --disable-physics --enable-tizen --enable-g-main-loop \
 		--disable-xim --disable-scim --enable-gesture \
-		--enable-tile-rotate --disable-rpath --with-x11=xlib --with-opengl=es
+		--enable-tile-rotate --disable-rpath --with-x11=xlib --with-opengl=es \
+		--enable-systemd \
+		--enable-lua-old \
+		--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aaa \
+		#eol
 
 make
 
@@ -193,12 +197,11 @@ make
 %{_bindir}/eina-bench-cmp
 %{_bindir}/eldbus-codegen
 %{_bindir}/embryo_cc
-%{_bindir}/emotion_test
 %{_bindir}/ethumb
 %{_bindir}/ethumbd
 %{_bindir}/ethumbd_client
 %{_bindir}/evas_cserve2_client
-%{_bindir}/evas_cserve2_debug
+%{_bindir}/evas_cserve2*_debug
 %{_bindir}/evas_cserve2_usage
 
 %{_datadir}/*
