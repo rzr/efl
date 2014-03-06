@@ -684,6 +684,7 @@ rm -rf %{buildroot}%{_libdir}/ecore/system/upower
 %{_libdir}/libecore_x.so.*
 %endif
 %{_libdir}/ecore_evas/engines/*/*/module.so
+%{_libdir}/ecore_imf/modules/*/*/*.so
 %{_libdir}/ecore/system/tizen/*/module.so
 %{_datadir}/ecore/checkme
 %{_datadir}/ecore_imf/checkme
