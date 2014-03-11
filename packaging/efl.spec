@@ -1,3 +1,6 @@
+%bcond_with wayland
+%bcond_with x
+
 Name:           efl
 Version:        1.9.0
 Release:        0
@@ -38,7 +41,11 @@ BuildRequires:  pkgconfig(check)
 BuildRequires:  zlib-devel
 BuildRequires:  gettext-tools
 
-#ecore
+%if %{with wayland}
+BuildRequires:  pkgconfig(gles20)
+%endif
+
+%if %{with x}
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xcursor)
 BuildRequires:  pkgconfig(xinerama)
@@ -52,6 +59,12 @@ BuildRequires:  pkgconfig(xscrnsaver)
 BuildRequires:  libXtst-devel
 BuildRequires:  pkgconfig(xi)
 BuildRequires:  pkgconfig(xgesture)
+BuildRequires:  pkgconfig(ice)
+BuildRequires:  pkgconfig(sm)
+BuildRequires:  pkgconfig(libdri2)
+%endif
+
+#ecore
 BuildRequires:  glib2-devel
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  gnutls-devel
@@ -82,8 +95,6 @@ BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fribidi)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(harfbuzz)
-BuildRequires:  pkgconfig(libdri2)
-BuildRequires:  pkgconfig(gles20)
 BuildRequires:  pkgconfig(libtbm)
 
 #eeze
@@ -91,8 +102,6 @@ BuildRequires:  libudev-devel
 BuildRequires:  pkgconfig(capi-system-sensor)
 BuildRequires:  libmount-devel
 
-BuildRequires:  pkgconfig(ice)
-BuildRequires:  pkgconfig(sm)
 BuildRequires:  pkgconfig(dlog)
 
 #ephysics
@@ -143,10 +152,16 @@ Headers, pkgconfig files and other files needed for development with EFL.
 NOCONFIGURE=1 ./autogen.sh
 %configure --disable-physics --enable-tizen --enable-g-main-loop \
 		--disable-xim --disable-scim --enable-gesture \
-		--enable-tile-rotate --disable-rpath --with-x11=xlib --with-opengl=es \
+		--enable-tile-rotate --disable-rpath \
 		--enable-systemd \
 		--enable-lua-old \
 		--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aaa \
+%if %{with x}
+		--with-x11=xlib --with-opengl=full \
+%endif
+%if %{with wayland}
+		--with-opengl=es \
+%endif
 		#eol
 
 make
