@@ -636,6 +636,7 @@ _ecore_wl_cb_handle_global(void *data, struct wl_registry *registry, unsigned in
      _ecore_wl_output_add(ewd, id);
    else if (!strcmp(interface, "wl_seat"))
      _ecore_wl_input_add(ewd, id);
+
 #ifdef USE_IVI_SHELL
    else if (!strcmp(interface, "ivi_application"))
      {
@@ -643,7 +644,7 @@ _ecore_wl_cb_handle_global(void *data, struct wl_registry *registry, unsigned in
           wl_registry_bind(registry, id, &ivi_application_interface, 1);
      }
 #endif
-   else if (!strcmp(interface, "xdg_shell"))
+   else if (getenv("EFL_WAYLAND_USE_XDG_SHELL") && !strcmp(interface, "xdg_shell"))
      {
         ewd->wl.xdg_shell = 
           wl_registry_bind(registry, id, &xdg_shell_interface, 1);
